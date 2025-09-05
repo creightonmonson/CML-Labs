@@ -1,0 +1,270 @@
+lab:
+  notes: |-
+    ## Description:
+
+    Micronics Training Enterprise Architecture 1.0 Advanced Techonlogy Lab
+
+    Imported from /tmp/phpbZkQsd via `eve2cml` converter
+  description: Imported from /tmp/phpbZkQsd via eve2cml converter
+  title: Lab 17-Remove-Private-As A Walk Through_1660109598530
+  version: 0.1.0
+annotations: []
+links:
+- id: l0
+  n1: n5
+  i1: i3
+  n2: n15
+  i2: i4
+  label: Net-R3iface_4-0
+  conditioning: {}
+- id: l1
+  n1: n15
+  i1: i2
+  n2: n16
+  i2: i3
+  label: Net-R3iface_2-1
+  conditioning: {}
+- id: l2
+  n1: n16
+  i1: i1
+  n2: n17
+  i2: i2
+  label: Net-R2iface_1-2
+  conditioning: {}
+nodes:
+- id: n5
+  boot_disk_size: null
+  configuration: ''
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R4
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 819
+  y: 258
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical
+- id: n15
+  boot_disk_size: null
+  configuration: ''
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R3
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 612
+  y: 258
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical
+- id: n16
+  boot_disk_size: null
+  configuration: ''
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R2
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 426
+  y: 258
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical
+- id: n17
+  boot_disk_size: null
+  configuration: ''
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R1
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 201
+  y: 258
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical

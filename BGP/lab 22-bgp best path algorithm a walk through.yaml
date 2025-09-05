@@ -1,0 +1,6644 @@
+lab:
+  notes: Imported from /tmp/phpa1edm3 via `eve2cml` converter
+  description: Imported from /tmp/phpa1edm3 via eve2cml converter
+  title: Lab 22-BGP Best Path Algorithm a walk through
+  version: 0.1.0
+annotations: []
+links:
+- id: l0
+  n1: n31
+  i1: i9
+  n2: n32
+  i2: i5
+  label: Net-SW-1iface_18-0
+  conditioning: {}
+- id: l1
+  n1: n31
+  i1: i13
+  n2: n33
+  i2: i5
+  label: Net-SW-1iface_19-1
+  conditioning: {}
+- id: l2
+  n1: n31
+  i1: i21
+  n2: n35
+  i2: i5
+  label: Net-SW-1iface_21-2
+  conditioning: {}
+- id: l3
+  n1: n31
+  i1: i17
+  n2: n34
+  i2: i5
+  label: Net-SW-1iface_20-3
+  conditioning: {}
+- id: l4
+  n1: n32
+  i1: i13
+  n2: n33
+  i2: i9
+  label: Net-SW-2iface_19-4
+  conditioning: {}
+- id: l5
+  n1: n32
+  i1: i17
+  n2: n34
+  i2: i9
+  label: Net-SW-2iface_20-5
+  conditioning: {}
+- id: l6
+  n1: n32
+  i1: i21
+  n2: n35
+  i2: i9
+  label: Net-SW-2iface_21-6
+  conditioning: {}
+- id: l7
+  n1: n33
+  i1: i17
+  n2: n34
+  i2: i13
+  label: Net-SW-3iface_20-7
+  conditioning: {}
+- id: l8
+  n1: n33
+  i1: i21
+  n2: n35
+  i2: i13
+  label: Net-SW-3iface_21-8
+  conditioning: {}
+- id: l9
+  n1: n34
+  i1: i21
+  n2: n35
+  i2: i17
+  label: Net-SW-4iface_21-9
+  conditioning: {}
+- id: l10
+  n1: n1
+  i1: i0
+  n2: n31
+  i2: i0
+  label: Net-R1iface_0-10
+  conditioning: {}
+- id: l11
+  n1: n5
+  i1: i0
+  n2: n31
+  i2: i1
+  label: Net-R5iface_0-11
+  conditioning: {}
+- id: l12
+  n1: n2
+  i1: i0
+  n2: n31
+  i2: i2
+  label: Net-R2iface_0-12
+  conditioning: {}
+- id: l13
+  n1: n3
+  i1: i0
+  n2: n31
+  i2: i3
+  label: Net-R3iface_0-13
+  conditioning: {}
+- id: l14
+  n1: n4
+  i1: i0
+  n2: n31
+  i2: i4
+  label: Net-R4iface_0-14
+  conditioning: {}
+- id: l15
+  n1: n6
+  i1: i0
+  n2: n31
+  i2: i5
+  label: Net-R6iface_0-15
+  conditioning: {}
+- id: l16
+  n1: n8
+  i1: i0
+  n2: n31
+  i2: i6
+  label: Net-R8iface_0-16
+  conditioning: {}
+- id: l17
+  n1: n7
+  i1: i0
+  n2: n31
+  i2: i7
+  label: Net-R7iface_0-17
+  conditioning: {}
+- id: l18
+  n1: n9
+  i1: i0
+  n2: n32
+  i2: i8
+  label: Net-R9iface_0-18
+  conditioning: {}
+- id: l19
+  n1: n10
+  i1: i0
+  n2: n32
+  i2: i9
+  label: Net-R10iface_0-19
+  conditioning: {}
+- id: l20
+  n1: n11
+  i1: i0
+  n2: n33
+  i2: i2
+  label: Net-R11iface_0-20
+  conditioning: {}
+- id: l21
+  n1: n12
+  i1: i0
+  n2: n33
+  i2: i3
+  label: Net-R12iface_0-21
+  conditioning: {}
+- id: l22
+  n1: n13
+  i1: i0
+  n2: n33
+  i2: i4
+  label: Net-R13iface_0-22
+  conditioning: {}
+- id: l23
+  n1: n14
+  i1: i0
+  n2: n33
+  i2: i7
+  label: Net-R14iface_0-23
+  conditioning: {}
+- id: l24
+  n1: n15
+  i1: i0
+  n2: n33
+  i2: i8
+  label: Net-R15iface_0-24
+  conditioning: {}
+- id: l25
+  n1: n16
+  i1: i0
+  n2: n35
+  i2: i4
+  label: Net-R16iface_0-25
+  conditioning: {}
+- id: l26
+  n1: n17
+  i1: i0
+  n2: n35
+  i2: i7
+  label: Net-R17iface_0-26
+  conditioning: {}
+- id: l27
+  n1: n18
+  i1: i0
+  n2: n35
+  i2: i8
+  label: Net-R18iface_0-27
+  conditioning: {}
+- id: l28
+  n1: n19
+  i1: i0
+  n2: n35
+  i2: i11
+  label: Net-R19iface_0-28
+  conditioning: {}
+- id: l29
+  n1: n20
+  i1: i0
+  n2: n35
+  i2: i12
+  label: Net-R20iface_0-29
+  conditioning: {}
+nodes:
+- id: n1
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R1
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 1.1.1.1 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Loopback10
+     no shutdown
+     ip address 130.1.1.1 255.255.255.255
+    !
+    interface Loopback20
+     no shutdown
+     ip address 130.1.2.1 255.255.255.255
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.12
+     no shutdown
+     encapsulation dot1Q 12
+     ip address 30.1.2.1 255.255.255.0
+    !
+    interface Ethernet0/0.14
+     no shutdown
+     encapsulation dot1Q 14
+     ip address 30.1.4.1 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Serial1/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    router ospf 1
+     router-id 1.1.1.1
+     network 30.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 312
+     bgp router-id 1.1.1.1
+     bgp log-neighbor-changes
+     bgp confederation identifier 300
+     bgp confederation peers 345
+     neighbor 2.2.2.2 remote-as 312
+     neighbor 2.2.2.2 update-source Loopback1
+     neighbor 4.4.4.4 remote-as 345
+     neighbor 4.4.4.4 disable-connected-check
+     neighbor 4.4.4.4 update-source Loopback1
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R1
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 552
+  y: 297
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n2
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 12:11:30 PST Wed Mar 15 2023
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R2
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 2.2.2.2 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.12
+     no shutdown
+     encapsulation dot1Q 12
+     ip address 30.1.2.2 255.255.255.0
+    !
+    interface Ethernet0/0.23
+     no shutdown
+     encapsulation dot1Q 23
+     ip address 30.2.3.2 255.255.255.0
+    !
+    interface Ethernet0/0.210
+     no shutdown
+     encapsulation dot1Q 210
+     ip address 200.2.10.2 255.255.255.0
+    !
+    interface Ethernet0/0.216
+     no shutdown
+     encapsulation dot1Q 216
+     ip address 200.2.16.2 255.255.255.0
+    !
+    interface Ethernet0/0.220
+     no shutdown
+     encapsulation dot1Q 220
+     ip address 200.2.20.2 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Serial1/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    router ospf 1
+     router-id 2.2.2.2
+     network 30.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 312
+     bgp router-id 2.2.2.2
+     bgp log-neighbor-changes
+     bgp confederation identifier 300
+     bgp confederation peers 336
+     neighbor 1.1.1.1 remote-as 312
+     neighbor 1.1.1.1 update-source Loopback1
+     neighbor 1.1.1.1 next-hop-self
+     neighbor 3.3.3.3 remote-as 336
+     neighbor 3.3.3.3 disable-connected-check
+     neighbor 3.3.3.3 update-source Loopback1
+     neighbor 3.3.3.3 next-hop-self
+     neighbor 200.2.10.10 remote-as 400
+     neighbor 200.2.16.16 remote-as 200
+     neighbor 200.2.20.20 remote-as 100
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R2
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 771
+  y: 180
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n3
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R3
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 3.3.3.3 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.23
+     no shutdown
+     encapsulation dot1Q 23
+     ip address 30.2.3.3 255.255.255.0
+    !
+    interface Ethernet0/0.34
+     no shutdown
+     encapsulation dot1Q 34
+     ip address 30.3.4.3 255.255.255.0
+    !
+    interface Ethernet0/0.36
+     no shutdown
+     encapsulation dot1Q 36
+     ip address 30.3.6.3 255.255.255.0
+    !
+    interface Ethernet0/0.310
+     no shutdown
+     encapsulation dot1Q 310
+     ip address 200.3.10.3 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Serial1/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    router ospf 1
+     router-id 3.3.3.3
+     network 30.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 336
+     bgp router-id 3.3.3.3
+     bgp log-neighbor-changes
+     bgp confederation identifier 300
+     bgp confederation peers 312 345
+     neighbor 2.2.2.2 remote-as 312
+     neighbor 2.2.2.2 disable-connected-check
+     neighbor 2.2.2.2 update-source Loopback1
+     neighbor 2.2.2.2 next-hop-self
+     neighbor 4.4.4.4 remote-as 345
+     neighbor 4.4.4.4 disable-connected-check
+     neighbor 4.4.4.4 update-source Loopback1
+     neighbor 4.4.4.4 next-hop-self
+     neighbor 6.6.6.6 remote-as 336
+     neighbor 6.6.6.6 update-source Loopback1
+     neighbor 6.6.6.6 next-hop-self
+     neighbor 200.3.10.10 remote-as 400
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R3
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 855
+  y: 276
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n4
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R4
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 4.4.4.4 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.14
+     no shutdown
+     encapsulation dot1Q 14
+     ip address 30.1.4.4 255.255.255.0
+    !
+    interface Ethernet0/0.34
+     no shutdown
+     encapsulation dot1Q 34
+     ip address 30.3.4.4 255.255.255.0
+    !
+    interface Ethernet0/0.45
+     no shutdown
+     encapsulation dot1Q 45
+     ip address 30.4.5.4 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Serial1/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    router ospf 1
+     router-id 4.4.4.4
+     network 30.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 345
+     bgp router-id 4.4.4.4
+     bgp log-neighbor-changes
+     bgp confederation identifier 300
+     bgp confederation peers 312 336
+     neighbor 1.1.1.1 remote-as 312
+     neighbor 1.1.1.1 disable-connected-check
+     neighbor 1.1.1.1 update-source Loopback1
+     neighbor 3.3.3.3 remote-as 336
+     neighbor 3.3.3.3 disable-connected-check
+     neighbor 3.3.3.3 update-source Loopback1
+     neighbor 5.5.5.5 remote-as 345
+     neighbor 5.5.5.5 update-source Loopback1
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R4
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 1005
+  y: 261
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n5
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R5
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 5.5.5.5 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Loopback10
+     no shutdown
+     ip address 130.5.1.1 255.255.255.255
+    !
+    interface Loopback20
+     no shutdown
+     ip address 130.5.2.1 255.255.255.255
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.45
+     no shutdown
+     encapsulation dot1Q 45
+     ip address 30.4.5.5 255.255.255.0
+    !
+    interface Ethernet0/0.57
+     no shutdown
+     encapsulation dot1Q 57
+     ip address 30.5.7.5 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Serial1/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    router ospf 1
+     router-id 5.5.5.5
+     network 30.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 345
+     bgp router-id 5.5.5.5
+     bgp log-neighbor-changes
+     bgp confederation identifier 300
+     bgp confederation peers 378
+     neighbor 4.4.4.4 remote-as 345
+     neighbor 4.4.4.4 update-source Loopback1
+     neighbor 7.7.7.7 remote-as 378
+     neighbor 7.7.7.7 disable-connected-check
+     neighbor 7.7.7.7 update-source Loopback1
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R5
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 711
+  y: 294
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n6
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R6
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 6.6.6.6 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.36
+     no shutdown
+     encapsulation dot1Q 36
+     ip address 30.3.6.6 255.255.255.0
+    !
+    interface Ethernet0/0.68
+     no shutdown
+     encapsulation dot1Q 68
+     ip address 30.6.8.6 255.255.255.0
+    !
+    interface Ethernet0/0.611
+     no shutdown
+     encapsulation dot1Q 611
+     ip address 200.6.11.6 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Serial1/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial2/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial3/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial4/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial5/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial6/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial7/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    router ospf 1
+     router-id 6.6.6.6
+     network 30.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 336
+     bgp router-id 6.6.6.6
+     bgp log-neighbor-changes
+     bgp confederation identifier 300
+     bgp confederation peers 378
+     neighbor 3.3.3.3 remote-as 336
+     neighbor 3.3.3.3 update-source Loopback1
+     neighbor 3.3.3.3 next-hop-self
+     neighbor 8.8.8.8 remote-as 378
+     neighbor 8.8.8.8 disable-connected-check
+     neighbor 8.8.8.8 update-source Loopback1
+     neighbor 8.8.8.8 next-hop-self
+     neighbor 200.6.11.11 remote-as 400
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R6
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 1152
+  y: 312
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n7
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R7
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 7.7.7.7 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Loopback10
+     no shutdown
+     ip address 130.7.1.1 255.255.255.255
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.57
+     no shutdown
+     encapsulation dot1Q 57
+     ip address 30.5.7.7 255.255.255.0
+    !
+    interface Ethernet0/0.78
+     no shutdown
+     encapsulation dot1Q 78
+     ip address 30.7.8.7 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 7.7.7.7
+     network 30.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 378
+     bgp router-id 7.7.7.7
+     bgp log-neighbor-changes
+     bgp confederation identifier 300
+     bgp confederation peers 345
+     network 130.7.1.1 mask 255.255.255.255
+     neighbor 5.5.5.5 remote-as 345
+     neighbor 5.5.5.5 disable-connected-check
+     neighbor 5.5.5.5 update-source Loopback1
+     neighbor 8.8.8.8 remote-as 378
+     neighbor 8.8.8.8 update-source Loopback1
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R7
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 514
+  y: 561
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n8
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R8
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 8.8.8.8 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.68
+     no shutdown
+     encapsulation dot1Q 68
+     ip address 30.6.8.8 255.255.255.0
+    !
+    interface Ethernet0/0.78
+     no shutdown
+     encapsulation dot1Q 78
+     ip address 30.7.8.8 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 8.8.8.8
+     network 30.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 378
+     bgp router-id 8.8.8.8
+     bgp log-neighbor-changes
+     bgp confederation identifier 300
+     bgp confederation peers 336
+     neighbor 6.6.6.6 remote-as 336
+     neighbor 6.6.6.6 disable-connected-check
+     neighbor 6.6.6.6 update-source Loopback1
+     neighbor 7.7.7.7 remote-as 378
+     neighbor 7.7.7.7 update-source Loopback1
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R8
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 639
+  y: 487
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n9
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R9
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 9.9.9.9 255.255.255.0
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.910
+     no shutdown
+     encapsulation dot1Q 910
+     ip address 40.9.10.9 255.255.255.0
+    !
+    interface Ethernet0/0.912
+     no shutdown
+     encapsulation dot1Q 912
+     ip address 40.9.12.9 255.255.255.0
+    !
+    interface Ethernet0/0.917
+     no shutdown
+     encapsulation dot1Q 917
+     ip address 200.9.17.9 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 9.9.9.9
+     network 40.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 400
+     bgp router-id 9.9.9.9
+     bgp log-neighbor-changes
+     neighbor 10.10.10.10 remote-as 400
+     neighbor 10.10.10.10 update-source Loopback1
+     neighbor 10.10.10.10 next-hop-self
+     neighbor 12.12.12.12 remote-as 400
+     neighbor 12.12.12.12 update-source Loopback1
+     neighbor 12.12.12.12 next-hop-self
+     neighbor 200.9.17.17 remote-as 200
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R9
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 1264
+  y: 390
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n10
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R10
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 10.10.10.10 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.210
+     no shutdown
+     encapsulation dot1Q 210
+     ip address 200.2.10.10 255.255.255.0
+    !
+    interface Ethernet0/0.310
+     no shutdown
+     encapsulation dot1Q 310
+     ip address 200.3.10.10 255.255.255.0
+    !
+    interface Ethernet0/0.910
+     no shutdown
+     encapsulation dot1Q 910
+     ip address 40.9.10.10 255.255.255.0
+    !
+    interface Ethernet0/0.1011
+     no shutdown
+     encapsulation dot1Q 1011
+     ip address 40.10.11.10 255.255.255.0
+    !
+    interface Ethernet0/0.1012
+     no shutdown
+     encapsulation dot1Q 1012
+     ip address 40.10.12.10 255.255.255.0
+    !
+    interface Ethernet0/0.1017
+     no shutdown
+     encapsulation dot1Q 1017
+     ip address 200.10.17.10 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 10.10.10.10
+     network 40.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 400
+     bgp router-id 10.10.10.10
+     bgp log-neighbor-changes
+     neighbor 9.9.9.9 remote-as 400
+     neighbor 9.9.9.9 update-source Loopback1
+     neighbor 9.9.9.9 next-hop-self
+     neighbor 11.11.11.11 remote-as 400
+     neighbor 11.11.11.11 update-source Loopback1
+     neighbor 11.11.11.11 next-hop-self
+     neighbor 12.12.12.12 remote-as 400
+     neighbor 12.12.12.12 update-source Loopback1
+     neighbor 12.12.12.12 next-hop-self
+     neighbor 200.2.10.2 remote-as 300
+     neighbor 200.3.10.3 remote-as 300
+     neighbor 200.10.17.17 remote-as 200
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R10
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 1329
+  y: 558
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n11
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R11
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 11.11.11.11 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.611
+     no shutdown
+     encapsulation dot1Q 611
+     ip address 200.6.11.11 255.255.255.0
+    !
+    interface Ethernet0/0.1011
+     no shutdown
+     encapsulation dot1Q 1011
+     ip address 40.10.11.11 255.255.255.0
+    !
+    interface Ethernet0/0.1112
+     no shutdown
+     encapsulation dot1Q 1112
+     ip address 40.11.12.11 255.255.255.0
+    !
+    interface Ethernet0/0.1114
+     no shutdown
+     encapsulation dot1Q 1114
+     ip address 40.11.14.11 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 11.11.11.11
+     network 40.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 400
+     bgp router-id 11.11.11.11
+     bgp log-neighbor-changes
+     neighbor 10.10.10.10 remote-as 400
+     neighbor 10.10.10.10 update-source Loopback1
+     neighbor 10.10.10.10 next-hop-self
+     neighbor 12.12.12.12 remote-as 400
+     neighbor 12.12.12.12 update-source Loopback1
+     neighbor 12.12.12.12 next-hop-self
+     neighbor 14.14.14.14 remote-as 400
+     neighbor 14.14.14.14 update-source Loopback1
+     neighbor 14.14.14.14 route-reflector-client
+     neighbor 14.14.14.14 next-hop-self
+     neighbor 200.6.11.6 remote-as 300
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R11
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 486
+  y: 624
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n12
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R12
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 12.12.12.12 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.912
+     no shutdown
+     encapsulation dot1Q 912
+     ip address 40.9.12.12 255.255.255.0
+    !
+    interface Ethernet0/0.1012
+     no shutdown
+     encapsulation dot1Q 1012
+     ip address 40.10.12.12 255.255.255.0
+    !
+    interface Ethernet0/0.1112
+     no shutdown
+     encapsulation dot1Q 1112
+     ip address 40.11.12.12 255.255.255.0
+    !
+    interface Ethernet0/0.1213
+     no shutdown
+     encapsulation dot1Q 1213
+     ip address 40.12.13.12 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 12.12.12.12
+     network 40.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 400
+     bgp router-id 12.12.12.12
+     bgp log-neighbor-changes
+     neighbor 9.9.9.9 remote-as 400
+     neighbor 9.9.9.9 update-source Loopback1
+     neighbor 9.9.9.9 route-reflector-client
+     neighbor 10.10.10.10 remote-as 400
+     neighbor 10.10.10.10 update-source Loopback1
+     neighbor 10.10.10.10 route-reflector-client
+     neighbor 11.11.11.11 remote-as 400
+     neighbor 11.11.11.11 update-source Loopback1
+     neighbor 11.11.11.11 route-reflector-client
+     neighbor 13.13.13.13 remote-as 400
+     neighbor 13.13.13.13 update-source Loopback1
+     neighbor 13.13.13.13 route-reflector-client
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R12
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 426
+  y: 687
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n13
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R13
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 13.13.13.13 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.1213
+     no shutdown
+     encapsulation dot1Q 1213
+     ip address 40.12.13.13 255.255.255.0
+    !
+    interface Ethernet0/0.1314
+     no shutdown
+     encapsulation dot1Q 1314
+     ip address 40.13.14.13 255.255.255.0
+    !
+    interface Ethernet0/0.1315
+     no shutdown
+     encapsulation dot1Q 1315
+     ip address 40.13.15.13 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 13.13.13.13
+     network 40.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 400
+     bgp router-id 13.13.13.13
+     bgp log-neighbor-changes
+     neighbor 12.12.12.12 remote-as 400
+     neighbor 12.12.12.12 update-source Loopback1
+     neighbor 14.14.14.14 remote-as 400
+     neighbor 14.14.14.14 update-source Loopback1
+     neighbor 14.14.14.14 route-reflector-client
+     neighbor 15.15.15.15 remote-as 400
+     neighbor 15.15.15.15 update-source Loopback1
+     neighbor 15.15.15.15 route-reflector-client
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R13
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 369
+  y: 759
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n14
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R14
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 14.14.14.14 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.1114
+     no shutdown
+     encapsulation dot1Q 1114
+     ip address 40.11.14.14 255.255.255.0
+    !
+    interface Ethernet0/0.1314
+     no shutdown
+     encapsulation dot1Q 1314
+     ip address 40.13.14.14 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 14.14.14.14
+     network 40.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 400
+     bgp router-id 14.14.14.14
+     bgp log-neighbor-changes
+     neighbor 11.11.11.11 remote-as 400
+     neighbor 11.11.11.11 update-source Loopback1
+     neighbor 13.13.13.13 remote-as 400
+     neighbor 13.13.13.13 update-source Loopback1
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R14
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 411
+  y: 813
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n15
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R15
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 15.15.15.15 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Loopback10
+     no shutdown
+     ip address 140.15.1.1 255.255.255.255
+    !
+    interface Loopback20
+     no shutdown
+     ip address 140.15.2.1 255.255.255.255
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.1315
+     no shutdown
+     encapsulation dot1Q 1315
+     ip address 40.13.15.15 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 15.15.15.15
+     network 40.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 400
+     bgp router-id 15.15.15.15
+     bgp log-neighbor-changes
+     network 140.15.1.1 mask 255.255.255.255
+     network 140.15.2.1 mask 255.255.255.255
+     neighbor 13.13.13.13 remote-as 400
+     neighbor 13.13.13.13 update-source Loopback1
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R15
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 462
+  y: 885
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n16
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R16
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 16.16.16.16 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.216
+     no shutdown
+     encapsulation dot1Q 216
+     ip address 200.2.16.16 255.255.255.0
+    !
+    interface Ethernet0/0.1617
+     no shutdown
+     encapsulation dot1Q 1617
+     ip address 20.16.17.16 255.255.255.0
+    !
+    interface Ethernet0/0.1618
+     no shutdown
+     encapsulation dot1Q 1618
+     ip address 20.16.18.16 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Serial1/0
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/1
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/2
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    interface Serial1/3
+     no shutdown
+     no ip address
+     shutdown
+     serial restart-delay 0
+    !
+    router ospf 1
+     router-id 16.16.16.16
+     network 20.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 200
+     bgp router-id 16.16.16.16
+     bgp log-neighbor-changes
+     neighbor 17.17.17.17 remote-as 200
+     neighbor 17.17.17.17 update-source Loopback1
+     neighbor 17.17.17.17 next-hop-self
+     neighbor 18.18.18.18 remote-as 200
+     neighbor 18.18.18.18 update-source Loopback1
+     neighbor 18.18.18.18 next-hop-self
+     neighbor 200.2.16.2 remote-as 300
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R16
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 651
+  y: 885
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n17
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R17
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 17.17.17.17 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.917
+     no shutdown
+     encapsulation dot1Q 917
+     ip address 200.9.17.17 255.255.255.0
+    !
+    interface Ethernet0/0.1017
+     no shutdown
+     encapsulation dot1Q 1017
+     ip address 200.10.17.17 255.255.255.0
+    !
+    interface Ethernet0/0.1617
+     no shutdown
+     encapsulation dot1Q 1617
+     ip address 20.16.17.17 255.255.255.0
+    !
+    interface Ethernet0/0.1718
+     no shutdown
+     encapsulation dot1Q 1718
+     ip address 20.17.18.17 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 17.17.17.17
+     network 20.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 200
+     bgp router-id 17.17.17.17
+     bgp log-neighbor-changes
+     neighbor 16.16.16.16 remote-as 200
+     neighbor 16.16.16.16 update-source Loopback1
+     neighbor 16.16.16.16 next-hop-self
+     neighbor 18.18.18.18 remote-as 200
+     neighbor 18.18.18.18 update-source Loopback1
+     neighbor 18.18.18.18 next-hop-self
+     neighbor 200.9.17.9 remote-as 400
+     neighbor 200.10.17.10 remote-as 400
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R17
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 702
+  y: 942
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n18
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R18
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 18.18.18.18 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Loopback10
+     no shutdown
+     ip address 120.18.1.1 255.255.255.255
+    !
+    interface Loopback20
+     no shutdown
+     ip address 120.18.2.1 255.255.255.255
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.1618
+     no shutdown
+     encapsulation dot1Q 1618
+     ip address 20.16.18.18 255.255.255.0
+    !
+    interface Ethernet0/0.1718
+     no shutdown
+     encapsulation dot1Q 1718
+     ip address 20.17.18.18 255.255.255.0
+    !
+    interface Ethernet0/0.1819
+     no shutdown
+     encapsulation dot1Q 1819
+     ip address 200.18.19.18 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 18.18.18.18
+     network 20.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 200
+     bgp router-id 18.18.18.18
+     bgp log-neighbor-changes
+     network 120.18.1.1 mask 255.255.255.255
+     network 120.18.2.1 mask 255.255.255.255
+     neighbor 16.16.16.16 remote-as 200
+     neighbor 16.16.16.16 update-source Loopback1
+     neighbor 16.16.16.16 next-hop-self
+     neighbor 17.17.17.17 remote-as 200
+     neighbor 17.17.17.17 update-source Loopback1
+     neighbor 17.17.17.17 next-hop-self
+     neighbor 200.18.19.19 remote-as 100
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R18
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 864
+  y: 969
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n19
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 10:40:35 PST Mon Oct 30 2023
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R19
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 19.19.19.19 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Loopback10
+     no shutdown
+     ip address 110.19.1.1 255.255.255.255
+    !
+    interface Loopback20
+     no shutdown
+     ip address 110.19.2.1 255.255.255.255
+    !
+    interface Loopback300
+     no shutdown
+     ip address 10.1.0.1 255.255.255.0
+    !
+    interface Loopback301
+     no shutdown
+     ip address 10.1.1.1 255.255.255.0
+    !
+    interface Loopback302
+     no shutdown
+     ip address 10.1.2.1 255.255.255.0
+    !
+    interface Loopback303
+     no shutdown
+     ip address 10.1.3.1 255.255.255.0
+    !
+    interface Loopback400
+     no shutdown
+     ip address 134.16.1.1 255.255.255.255
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.1819
+     no shutdown
+     encapsulation dot1Q 1819
+     ip address 200.18.19.19 255.255.255.0
+    !
+    interface Ethernet0/0.1920
+     no shutdown
+     encapsulation dot1Q 1920
+     ip address 10.19.20.19 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 19.19.19.19
+     network 10.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 100
+     bgp router-id 19.19.19.19
+     bgp log-neighbor-changes
+     network 10.1.0.0 mask 255.255.255.0
+     network 110.19.1.1 mask 255.255.255.255
+     network 110.19.2.1 mask 255.255.255.255
+     aggregate-address 10.1.0.0 255.255.252.0 summary-only
+     redistribute connected route-map redist
+     neighbor 20.20.20.20 remote-as 100
+     neighbor 20.20.20.20 update-source Loopback1
+     neighbor 20.20.20.20 next-hop-self
+     neighbor 200.18.19.18 remote-as 200
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    route-map redist permit 10
+     match interface Loopback400
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     login
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R19
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 1071
+  y: 930
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n20
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 12:27:40 PST Wed Mar 15 2023
+    !
+    version 15.7
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R20
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    !
+    !
+    !
+    clock timezone PST -8 0
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    no ip icmp rate-limit unreachable
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+
+
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback1
+     no shutdown
+     ip address 20.20.20.20 255.255.255.255
+     ip ospf 1 area 0
+    !
+    interface Loopback10
+     no shutdown
+     ip address 110.20.1.1 255.255.255.255
+    !
+    interface Loopback20
+     no shutdown
+     ip address 110.20.2.1 255.255.255.255
+    !
+    interface Ethernet0/0
+     no shutdown
+     no ip address
+     duplex auto
+    !
+    interface Ethernet0/0.220
+     no shutdown
+     encapsulation dot1Q 220
+     ip address 200.2.20.20 255.255.255.0
+    !
+    interface Ethernet0/0.1920
+     no shutdown
+     encapsulation dot1Q 1920
+     ip address 10.19.20.20 255.255.255.0
+    !
+    interface Ethernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    interface Ethernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+    !
+    router ospf 1
+     router-id 20.20.20.20
+     network 10.0.0.0 0.255.255.255 area 0
+    !
+    router bgp 100
+     bgp router-id 20.20.20.20
+     bgp log-neighbor-changes
+     neighbor 19.19.19.19 remote-as 100
+     neighbor 19.19.19.19 update-source Loopback1
+     neighbor 19.19.19.19 next-hop-self
+     neighbor 200.2.20.2 remote-as 300
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    ipv6 ioam timestamp
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     privilege level 15
+     logging synchronous
+    line aux 0
+     exec-timeout 0 0
+     privilege level 15
+     logging synchronous
+    line vty 0 4
+     privilege level 15
+     login
+     length 0
+     transport input none
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: R20
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 1077
+  y: 828
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+- id: n31
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 13:54:53 PST Wed Mar 15 2023
+    !
+    version 15.2
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    service compress-config
+    !
+    hostname SW1
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    clock timezone PST -8 0
+    !
+    !
+    !
+    !
+    !
+    vtp mode transparent
+    !
+    !
+    !
+    no ip domain-lookup
+    ip cef
+    no ipv6 cef
+    !
+    !
+    !
+    spanning-tree mode pvst
+    spanning-tree extend system-id
+    !
+    !
+    vlan 12,14,23,34,36,45,57,68,78,210,216,220,310,611,910,912,917,1011-1012
+    !
+    vlan 1017,1112,1114,1213,1314-1315,1617-1618,1718,1819,1920
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Ethernet0/0
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet0/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet0/2
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet0/3
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/0
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/2
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/3
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet2/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet2/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet3/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet4/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet5/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/3
+     no shutdown
+     shutdown
+    !
+    ip forward-protocol nd
+    !
+    ip http server
+    !
+    ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    !
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     exec-timeout 0 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+     login
+    !
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: SW-1
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 849
+  y: 492
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: Ethernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: Ethernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: Ethernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: Ethernet1/0
+    slot: 4
+    type: physical
+  - id: i5
+    label: Ethernet1/1
+    slot: 5
+    type: physical
+  - id: i6
+    label: Ethernet1/2
+    slot: 6
+    type: physical
+  - id: i7
+    label: Ethernet1/3
+    slot: 7
+    type: physical
+  - id: i8
+    label: Ethernet2/0
+    slot: 8
+    type: physical
+  - id: i9
+    label: Ethernet2/1
+    slot: 9
+    type: physical
+  - id: i10
+    label: Ethernet2/2
+    slot: 10
+    type: physical
+  - id: i11
+    label: Ethernet2/3
+    slot: 11
+    type: physical
+  - id: i12
+    label: Ethernet3/0
+    slot: 12
+    type: physical
+  - id: i13
+    label: Ethernet3/1
+    slot: 13
+    type: physical
+  - id: i14
+    label: Ethernet3/2
+    slot: 14
+    type: physical
+  - id: i15
+    label: Ethernet3/3
+    slot: 15
+    type: physical
+  - id: i16
+    label: Ethernet4/0
+    slot: 16
+    type: physical
+  - id: i17
+    label: Ethernet4/1
+    slot: 17
+    type: physical
+  - id: i18
+    label: Ethernet4/2
+    slot: 18
+    type: physical
+  - id: i19
+    label: Ethernet4/3
+    slot: 19
+    type: physical
+  - id: i20
+    label: Ethernet5/0
+    slot: 20
+    type: physical
+  - id: i21
+    label: Ethernet5/1
+    slot: 21
+    type: physical
+- id: n32
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 13:54:58 PST Wed Mar 15 2023
+    !
+    version 15.2
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    service compress-config
+    !
+    hostname SW2
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    clock timezone PST -8 0
+    !
+    !
+    !
+    !
+    !
+    vtp mode transparent
+    !
+    !
+    !
+    no ip domain-lookup
+    ip cef
+    no ipv6 cef
+    !
+    !
+    !
+    spanning-tree mode pvst
+    spanning-tree extend system-id
+    !
+    !
+    vlan 12,14,23,34,36,45,57,68,78,210,216,220,310,611,910,912,917,1011-1012
+    !
+    vlan 1017,1112,1114,1213,1314-1315,1617-1618,1718,1819,1920
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Ethernet0/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet1/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet1/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet1/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet2/0
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet2/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet3/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet4/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet5/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/3
+     no shutdown
+     shutdown
+    !
+    ip forward-protocol nd
+    !
+    ip http server
+    !
+    ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    !
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     exec-timeout 0 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+     login
+    !
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: SW-2
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 1096
+  y: 483
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: Ethernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: Ethernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: Ethernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: Ethernet1/0
+    slot: 4
+    type: physical
+  - id: i5
+    label: Ethernet1/1
+    slot: 5
+    type: physical
+  - id: i6
+    label: Ethernet1/2
+    slot: 6
+    type: physical
+  - id: i7
+    label: Ethernet1/3
+    slot: 7
+    type: physical
+  - id: i8
+    label: Ethernet2/0
+    slot: 8
+    type: physical
+  - id: i9
+    label: Ethernet2/1
+    slot: 9
+    type: physical
+  - id: i10
+    label: Ethernet2/2
+    slot: 10
+    type: physical
+  - id: i11
+    label: Ethernet2/3
+    slot: 11
+    type: physical
+  - id: i12
+    label: Ethernet3/0
+    slot: 12
+    type: physical
+  - id: i13
+    label: Ethernet3/1
+    slot: 13
+    type: physical
+  - id: i14
+    label: Ethernet3/2
+    slot: 14
+    type: physical
+  - id: i15
+    label: Ethernet3/3
+    slot: 15
+    type: physical
+  - id: i16
+    label: Ethernet4/0
+    slot: 16
+    type: physical
+  - id: i17
+    label: Ethernet4/1
+    slot: 17
+    type: physical
+  - id: i18
+    label: Ethernet4/2
+    slot: 18
+    type: physical
+  - id: i19
+    label: Ethernet4/3
+    slot: 19
+    type: physical
+  - id: i20
+    label: Ethernet5/0
+    slot: 20
+    type: physical
+  - id: i21
+    label: Ethernet5/1
+    slot: 21
+    type: physical
+- id: n33
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 13:55:05 PST Wed Mar 15 2023
+    !
+    version 15.2
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    service compress-config
+    !
+    hostname SW3
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    clock timezone PST -8 0
+    !
+    !
+    !
+    !
+    !
+    vtp mode transparent
+    !
+    !
+    !
+    no ip domain-lookup
+    ip cef
+    no ipv6 cef
+    !
+    !
+    !
+    spanning-tree mode pvst
+    spanning-tree extend system-id
+    !
+    !
+    vlan 12,14,23,34,36,45,57,68,78,210,216,220,310,611,910,912,917,1011-1012
+    !
+    vlan 1017,1112,1114,1213,1314-1315,1617-1618,1718,1819,1920
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Ethernet0/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/2
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet0/3
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/0
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet1/3
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/0
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet2/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet4/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet5/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/3
+     no shutdown
+     shutdown
+    !
+    ip forward-protocol nd
+    !
+    ip http server
+    !
+    ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    !
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     exec-timeout 0 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+     login
+    !
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: SW-3
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 670
+  y: 710
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: Ethernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: Ethernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: Ethernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: Ethernet1/0
+    slot: 4
+    type: physical
+  - id: i5
+    label: Ethernet1/1
+    slot: 5
+    type: physical
+  - id: i6
+    label: Ethernet1/2
+    slot: 6
+    type: physical
+  - id: i7
+    label: Ethernet1/3
+    slot: 7
+    type: physical
+  - id: i8
+    label: Ethernet2/0
+    slot: 8
+    type: physical
+  - id: i9
+    label: Ethernet2/1
+    slot: 9
+    type: physical
+  - id: i10
+    label: Ethernet2/2
+    slot: 10
+    type: physical
+  - id: i11
+    label: Ethernet2/3
+    slot: 11
+    type: physical
+  - id: i12
+    label: Ethernet3/0
+    slot: 12
+    type: physical
+  - id: i13
+    label: Ethernet3/1
+    slot: 13
+    type: physical
+  - id: i14
+    label: Ethernet3/2
+    slot: 14
+    type: physical
+  - id: i15
+    label: Ethernet3/3
+    slot: 15
+    type: physical
+  - id: i16
+    label: Ethernet4/0
+    slot: 16
+    type: physical
+  - id: i17
+    label: Ethernet4/1
+    slot: 17
+    type: physical
+  - id: i18
+    label: Ethernet4/2
+    slot: 18
+    type: physical
+  - id: i19
+    label: Ethernet4/3
+    slot: 19
+    type: physical
+  - id: i20
+    label: Ethernet5/0
+    slot: 20
+    type: physical
+  - id: i21
+    label: Ethernet5/1
+    slot: 21
+    type: physical
+- id: n34
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 13:55:03 PST Wed Mar 15 2023
+    !
+    version 15.2
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    service compress-config
+    !
+    hostname SW4
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    clock timezone PST -8 0
+    !
+    !
+    !
+    !
+    !
+    vtp mode transparent
+    !
+    !
+    !
+    no ip domain-lookup
+    ip cef
+    no ipv6 cef
+    !
+    !
+    !
+    spanning-tree mode pvst
+    spanning-tree extend system-id
+    !
+    !
+    vlan 12,14,23,34,36,45,57,68,78,210,216,220,310,611,910,912,917,1011-1012
+    !
+    vlan 1017,1112,1114,1213,1314-1315,1617-1618,1718,1819,1920
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Ethernet0/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/2
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet0/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet1/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet1/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet1/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet2/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet2/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet2/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet3/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet5/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/3
+     no shutdown
+     shutdown
+    !
+    ip forward-protocol nd
+    !
+    ip http server
+    !
+    ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    !
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     exec-timeout 0 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+     login
+    !
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: SW-4
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 1209
+  y: 623
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: Ethernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: Ethernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: Ethernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: Ethernet1/0
+    slot: 4
+    type: physical
+  - id: i5
+    label: Ethernet1/1
+    slot: 5
+    type: physical
+  - id: i6
+    label: Ethernet1/2
+    slot: 6
+    type: physical
+  - id: i7
+    label: Ethernet1/3
+    slot: 7
+    type: physical
+  - id: i8
+    label: Ethernet2/0
+    slot: 8
+    type: physical
+  - id: i9
+    label: Ethernet2/1
+    slot: 9
+    type: physical
+  - id: i10
+    label: Ethernet2/2
+    slot: 10
+    type: physical
+  - id: i11
+    label: Ethernet2/3
+    slot: 11
+    type: physical
+  - id: i12
+    label: Ethernet3/0
+    slot: 12
+    type: physical
+  - id: i13
+    label: Ethernet3/1
+    slot: 13
+    type: physical
+  - id: i14
+    label: Ethernet3/2
+    slot: 14
+    type: physical
+  - id: i15
+    label: Ethernet3/3
+    slot: 15
+    type: physical
+  - id: i16
+    label: Ethernet4/0
+    slot: 16
+    type: physical
+  - id: i17
+    label: Ethernet4/1
+    slot: 17
+    type: physical
+  - id: i18
+    label: Ethernet4/2
+    slot: 18
+    type: physical
+  - id: i19
+    label: Ethernet4/3
+    slot: 19
+    type: physical
+  - id: i20
+    label: Ethernet5/0
+    slot: 20
+    type: physical
+  - id: i21
+    label: Ethernet5/1
+    slot: 21
+    type: physical
+- id: n35
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 13:55:04 PST Wed Mar 15 2023
+    !
+    version 15.2
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    service compress-config
+    !
+    hostname SW5
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    clock timezone PST -8 0
+    !
+    !
+    !
+    !
+    !
+    vtp mode transparent
+    !
+    !
+    !
+    no ip domain-lookup
+    ip cef
+    no ipv6 cef
+    !
+    !
+    !
+    spanning-tree mode pvst
+    spanning-tree extend system-id
+    !
+    !
+    vlan 12,14,23,34,36,45,57,68,78,210,216,220,310,611,910,912,917,1011-1012
+    !
+    vlan 1017,1112,1114,1213,1314-1315,1617-1618,1718,1819,1920
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Ethernet0/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet0/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet1/0
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet1/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet1/3
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/0
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet2/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet2/3
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet3/0
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet3/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet3/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet3/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/1
+     no shutdown
+     switchport trunk encapsulation dot1q
+     switchport mode trunk
+    !
+    interface Ethernet4/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet4/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet5/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet6/3
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/0
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/1
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/2
+     no shutdown
+     shutdown
+    !
+    interface Ethernet7/3
+     no shutdown
+     shutdown
+    !
+    ip forward-protocol nd
+    !
+    ip http server
+    !
+    ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    !
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     exec-timeout 0 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+     login
+    !
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: SW-5
+  node_definition: iol-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 849
+  y: 801
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: Ethernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: Ethernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: Ethernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: Ethernet1/0
+    slot: 4
+    type: physical
+  - id: i5
+    label: Ethernet1/1
+    slot: 5
+    type: physical
+  - id: i6
+    label: Ethernet1/2
+    slot: 6
+    type: physical
+  - id: i7
+    label: Ethernet1/3
+    slot: 7
+    type: physical
+  - id: i8
+    label: Ethernet2/0
+    slot: 8
+    type: physical
+  - id: i9
+    label: Ethernet2/1
+    slot: 9
+    type: physical
+  - id: i10
+    label: Ethernet2/2
+    slot: 10
+    type: physical
+  - id: i11
+    label: Ethernet2/3
+    slot: 11
+    type: physical
+  - id: i12
+    label: Ethernet3/0
+    slot: 12
+    type: physical
+  - id: i13
+    label: Ethernet3/1
+    slot: 13
+    type: physical
+  - id: i14
+    label: Ethernet3/2
+    slot: 14
+    type: physical
+  - id: i15
+    label: Ethernet3/3
+    slot: 15
+    type: physical
+  - id: i16
+    label: Ethernet4/0
+    slot: 16
+    type: physical
+  - id: i17
+    label: Ethernet4/1
+    slot: 17
+    type: physical

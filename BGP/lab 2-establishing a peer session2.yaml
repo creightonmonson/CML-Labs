@@ -1,0 +1,1257 @@
+lab:
+  notes: |-
+    ## Description:
+
+    Micronics Training Enterprise Architecture 1.0 Advanced Techonlogy Lab
+
+    Imported from /tmp/phpu56wR9 via `eve2cml` converter
+  description: Imported from /tmp/phpu56wR9 via eve2cml converter
+  title: Lab 2-Establishing a Peer session using different methods-T6-7_1660104963408
+  version: 0.1.0
+annotations: []
+links:
+- id: l0
+  n1: n16
+  i1: i1
+  n2: n17
+  i2: i2
+  label: Net-R2iface_1-0
+  conditioning: {}
+- id: l1
+  n1: n9
+  i1: i2
+  n2: n16
+  i2: i0
+  label: Net-R2iface_0-1
+  conditioning: {}
+- id: l2
+  n1: n9
+  i1: i3
+  n2: n15
+  i2: i0
+  label: Net-R3iface_0-2
+  conditioning: {}
+- id: l3
+  n1: n9
+  i1: i4
+  n2: n5
+  i2: i0
+  label: Net-R4iface_0-3
+  conditioning: {}
+nodes:
+- id: n9
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 20:09:08 PST Tue Aug 9 2022
+    !
+    version 15.2
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    service compress-config
+    !
+    hostname Switch
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    clock timezone PST -8 0
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    ip cef
+    no ipv6 cef
+    !
+    !
+    !
+    spanning-tree mode pvst
+    spanning-tree extend system-id
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Ethernet0/0
+     no shutdown
+    !
+    interface Ethernet0/1
+     no shutdown
+    !
+    interface Ethernet0/2
+     no shutdown
+    !
+    interface Ethernet0/3
+     no shutdown
+    !
+    interface Ethernet1/0
+     no shutdown
+    !
+    interface Ethernet1/1
+     no shutdown
+    !
+    interface Ethernet1/2
+     no shutdown
+    !
+    interface Ethernet1/3
+     no shutdown
+    !
+    interface Ethernet2/0
+     no shutdown
+    !
+    interface Ethernet2/1
+     no shutdown
+    !
+    interface Ethernet2/2
+     no shutdown
+    !
+    interface Ethernet2/3
+     no shutdown
+    !
+    interface Ethernet3/0
+     no shutdown
+    !
+    interface Ethernet3/1
+     no shutdown
+    !
+    interface Ethernet3/2
+     no shutdown
+    !
+    interface Ethernet3/3
+     no shutdown
+    !
+    interface Ethernet4/0
+     no shutdown
+    !
+    interface Ethernet4/1
+     no shutdown
+    !
+    interface Ethernet4/2
+     no shutdown
+    !
+    interface Ethernet4/3
+     no shutdown
+    !
+    interface Ethernet5/0
+     no shutdown
+    !
+    interface Ethernet5/1
+     no shutdown
+    !
+    interface Ethernet5/2
+     no shutdown
+    !
+    interface Ethernet5/3
+     no shutdown
+    !
+    interface Ethernet6/0
+     no shutdown
+    !
+    interface Ethernet6/1
+     no shutdown
+    !
+    interface Ethernet6/2
+     no shutdown
+    !
+    interface Ethernet6/3
+     no shutdown
+    !
+    ip forward-protocol nd
+    !
+    ip http server
+    ip http secure-server
+    !
+    ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    !
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    !
+    line con 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+    !
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: SW1
+  node_definition: ioll2-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 441
+  y: 204
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: Ethernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: Ethernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: Ethernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: Ethernet1/0
+    slot: 4
+    type: physical
+  - id: i5
+    label: Ethernet1/1
+    slot: 5
+    type: physical
+  - id: i6
+    label: Ethernet1/2
+    slot: 6
+    type: physical
+- id: n5
+  boot_disk_size: null
+  configuration: |-
+    !
+    version 15.6
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname Router
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    ethernet lmi ce
+    !
+    !
+    !
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface GigabitEthernet0/0
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/4
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/5
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/6
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/7
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/8
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/9
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/10
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    banner exec ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner incoming ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner login ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    !
+    line con 0
+    line aux 0
+    line vty 0 4
+     login
+     transport input none
+    !
+    no scheduler allocate
+    !
+    end
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R4
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 531
+  y: 360
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical
+- id: n15
+  boot_disk_size: null
+  configuration: |-
+    !
+    version 15.6
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname Router
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    ethernet lmi ce
+    !
+    !
+    !
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface GigabitEthernet0/0
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/4
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/5
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/6
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/7
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/8
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/9
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/10
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    banner exec ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner incoming ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner login ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    !
+    line con 0
+    line aux 0
+    line vty 0 4
+     login
+     transport input none
+    !
+    no scheduler allocate
+    !
+    end
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R3
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 351
+  y: 357
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical
+- id: n16
+  boot_disk_size: null
+  configuration: |-
+    more system:runort
+    Copyright (c) 1986-2016 by Cisco Systems, Inc.
+    Compiled Tue 22-Mar-16 16:19 by prod_rel_team
+    *Aug 10 04:13:22.821: %CRYPTO-6-ISAKMP_ON_OFF: ISAKMP is OFF
+    *Aug 10 04:13:22.821: %CRYPTO-6-GDOI_ON_OFF: GDOI is OFFning-config
+    !
+    version 15.6
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname Router
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    ethernet lmi ce
+    !
+    !
+    !
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface GigabitEthernet0/0
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/4
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/5
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/6
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/7
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/8
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/9
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/10
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    banner exec ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner incoming ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner login ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    !
+    line con 0
+    line aux 0
+    line vty 0 4
+     login
+     transport input none
+    !
+    no scheduler allocate
+    !
+    end
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R2
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 288
+  y: 213
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical
+- id: n17
+  boot_disk_size: null
+  configuration: |-
+    !
+    version 15.6
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname Router
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    ethernet lmi ce
+    !
+    !
+    !
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface GigabitEthernet0/0
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/4
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/5
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/6
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/7
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/8
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/9
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/10
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    banner exec ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner incoming ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner login ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    !
+    line con 0
+    line aux 0
+    line vty 0 4
+     login
+     transport input none
+    !
+    no scheduler allocate
+    !
+    end
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R1
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 60
+  y: 216
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical

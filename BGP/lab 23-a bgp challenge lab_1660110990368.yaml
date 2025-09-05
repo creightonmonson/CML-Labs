@@ -1,0 +1,1811 @@
+lab:
+  notes: |-
+    ## Description:
+
+    Micronics Training Enterprise Architecture 1.0 Advanced Techonlogy Lab
+
+    Imported from /tmp/phpmmNAtG via `eve2cml` converter
+  description: Imported from /tmp/phpmmNAtG via eve2cml converter
+  title: Lab 23-A BGP Challenge Lab_1660110990368
+  version: 0.1.0
+annotations: []
+links:
+- id: l0
+  n1: n9
+  i1: i6
+  n2: n6
+  i2: i0
+  label: Net-R6iface_0-0
+  conditioning: {}
+- id: l1
+  n1: n1
+  i1: i6
+  n2: n6
+  i2: i5
+  label: Net-R5iface_6-1
+  conditioning: {}
+- id: l2
+  n1: n1
+  i1: i7
+  n2: n7
+  i2: i5
+  label: Net-R5iface_7-2
+  conditioning: {}
+- id: l3
+  n1: n7
+  i1: i8
+  n2: n8
+  i2: i7
+  label: Net-R7iface_8-3
+  conditioning: {}
+- id: l4
+  n1: n16
+  i1: i1
+  n2: n17
+  i2: i2
+  label: Net-R2iface_1-4
+  conditioning: {}
+- id: l5
+  n1: n15
+  i1: i1
+  n2: n17
+  i2: i3
+  label: Net-R3iface_1-5
+  conditioning: {}
+- id: l6
+  n1: n1
+  i1: i3
+  n2: n15
+  i2: i5
+  label: Net-R3iface_5-6
+  conditioning: {}
+- id: l7
+  n1: n7
+  i1: i3
+  n2: n15
+  i2: i7
+  label: Net-R3iface_7-7
+  conditioning: {}
+- id: l8
+  n1: n8
+  i1: i2
+  n2: n16
+  i2: i8
+  label: Net-R2iface_8-8
+  conditioning: {}
+- id: l9
+  n1: n6
+  i1: i1
+  n2: n17
+  i2: i6
+  label: Net-R1iface_6-9
+  conditioning: {}
+- id: l10
+  n1: n9
+  i1: i1
+  n2: n17
+  i2: i0
+  label: Net-R1iface_0-10
+  conditioning: {}
+nodes:
+- id: n9
+  boot_disk_size: null
+  configuration: |2-
+
+    !
+    ! Last configuration change at 21:49:04 PST Tue Aug 9 2022
+    !
+    version 15.2
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    service compress-config
+    !
+    hostname SW1
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    clock timezone PST -8 0
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    no ip domain-lookup
+    ip cef
+    no ipv6 cef
+    !
+    !
+    !
+    spanning-tree mode pvst
+    spanning-tree extend system-id
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback0
+     no shutdown
+     ip address 19.69.0.7 255.255.255.255
+    !
+    interface Ethernet0/0
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet0/1
+     no shutdown
+     switchport access vlan 17
+     switchport mode access
+     duplex half
+    !
+    interface Ethernet0/2
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet0/3
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet1/0
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet1/1
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet1/2
+     no shutdown
+     switchport access vlan 67
+     switchport mode access
+     duplex half
+    !
+    interface Ethernet1/3
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet2/0
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet2/1
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet2/2
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet2/3
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet3/0
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet3/1
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet3/2
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet3/3
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet4/0
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet4/1
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet4/2
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet4/3
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet5/0
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet5/1
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet5/2
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet5/3
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet6/0
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet6/1
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet6/2
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Ethernet6/3
+     no shutdown
+     shutdown
+     duplex half
+    !
+    interface Vlan17
+     no shutdown
+     ip address 19.69.17.7 255.255.255.0
+    !
+    interface Vlan67
+     no shutdown
+     ip address 19.69.67.7 255.255.255.0
+    !
+    router bgp 7
+     bgp log-neighbor-changes
+     neighbor 19.69.17.1 remote-as 6531
+     neighbor 19.69.67.6 remote-as 6531
+    !
+    ip forward-protocol nd
+    !
+    ip http server
+    ip http secure-server
+    !
+    ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+    !
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    !
+    line con 0
+     exec-timeout 0 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+    !
+    !
+    !
+    end
+  cpu_limit: null
+  cpus: null
+  data_volume: null
+  hide_links: false
+  label: SW1
+  node_definition: ioll2-xe
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 915
+  y: 381
+  interfaces:
+  - id: i0
+    label: Ethernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: Ethernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: Ethernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: Ethernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: Ethernet1/0
+    slot: 4
+    type: physical
+  - id: i5
+    label: Ethernet1/1
+    slot: 5
+    type: physical
+  - id: i6
+    label: Ethernet1/2
+    slot: 6
+    type: physical
+- id: n1
+  boot_disk_size: null
+  configuration: |-
+    !
+    ! Last configuration change at 05:49:36 UTC Wed Aug 10 2022
+    !
+    version 15.6
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R5
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    ethernet lmi ce
+    !
+    !
+    !
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback0
+     no shutdown
+     ip address 19.69.0.5 255.255.255.255
+    !
+    interface GigabitEthernet0/0
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/3
+     no shutdown
+     ip address 19.69.35.5 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/4
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/5
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/6
+     no shutdown
+     ip address 19.69.56.5 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/7
+     no shutdown
+     ip address 3.14.215.5 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/8
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/9
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    router ospf 1
+     network 19.69.0.0 0.0.255.255 area 0
+    !
+    router bgp 6531
+     bgp log-neighbor-changes
+     network 19.69.0.1 mask 255.255.255.255
+     network 19.69.0.3 mask 255.255.255.255
+     network 19.69.0.5 mask 255.255.255.255
+     network 19.69.0.6 mask 255.255.255.255
+     neighbor 3.14.215.21 remote-as 21
+     neighbor 3.14.215.21 transport connection-mode passive
+     neighbor 3.14.215.21 route-map rmR7 out
+     neighbor 3.14.215.21 filter-list 1 out
+     neighbor 19.69.35.3 remote-as 6531
+     neighbor 19.69.56.6 remote-as 6531
+    !
+    ip forward-protocol nd
+    !
+    ip as-path access-list 1 permit ^6531$
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    !
+    ip prefix-list plR6Lo0 seq 5 permit 19.69.0.6/32
+    !
+    route-map rmR7 permit 10
+     match ip address prefix-list plR6Lo0
+     set metric 100
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    banner exec ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner incoming ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner login ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    !
+    line con 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+     login
+     transport input none
+    !
+    no scheduler allocate
+    !
+    end
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R5
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 393
+  y: 543
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+- id: n6
+  boot_disk_size: null
+  configuration: |-
+    !
+    ! Last configuration change at 05:49:30 UTC Wed Aug 10 2022
+    !
+    version 15.6
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R6
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    ethernet lmi ce
+    !
+    !
+    !
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback0
+     no shutdown
+     ip address 19.69.0.6 255.255.255.255
+    !
+    interface GigabitEthernet0/0
+     no shutdown
+     ip address 19.69.67.6 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/1
+     no shutdown
+     ip address 19.69.16.6 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/4
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/5
+     no shutdown
+     ip address 19.69.56.6 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/6
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/7
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/8
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/9
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    router ospf 1
+     network 19.69.0.0 0.0.255.255 area 0
+    !
+    router bgp 6531
+     bgp log-neighbor-changes
+     network 19.69.0.1 mask 255.255.255.255
+     network 19.69.0.3 mask 255.255.255.255
+     network 19.69.0.5 mask 255.255.255.255
+     network 19.69.0.6 mask 255.255.255.255
+     aggregate-address 19.69.0.0 255.255.0.0
+     neighbor 19.69.16.1 remote-as 6531
+     neighbor 19.69.56.5 remote-as 6531
+     neighbor 19.69.67.7 remote-as 7
+    !
+    ip forward-protocol nd
+    !
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    banner exec ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner incoming ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner login ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    !
+    line con 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+     login
+     transport input none
+    !
+    no scheduler allocate
+    !
+    end
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R6
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 654
+  y: 543
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+- id: n7
+  boot_disk_size: null
+  configuration: |+
+    En
+    Conf t
+    !
+    !
+    hostname R7
+    !
+    !
+    no ip domain lookup
+    !
+    !
+    interface Loopback0
+     ip address 3.14.0.21 255.255.255.255
+    !
+    !
+    interface g0/3
+     ip address 3.14.213.21 255.255.255.0
+     no shut
+    !
+    !
+    interface g0/5
+     ip address 3.14.215.21 255.255.255.0
+     no shut
+    !
+    !
+    interface g0/8
+     ip address 3.14.15.21 255.255.255.0
+     no shut
+    !
+
+    router bgp 21
+     no synchronization
+     bgp log-neighbor-changes
+     network 3.14.0.21 mask 255.255.255.255
+     neighbor 3.14.15.22 remote-as 22
+     neighbor 3.14.15.22 prefix-list plR8 out
+    !
+    !
+     neighbor 3.14.213.3 remote-as 6531
+     neighbor 3.14.213.3 ttl-security hops 1
+     neighbor 3.14.215.5 remote-as 6531
+    !
+    !
+     neighbor 3.14.215.5 transport connection-mode passive
+     neighbor 3.14.215.5 prefix-list plR5 out
+     no auto-summary
+    !
+    !
+    ip http server
+    no ip http secure-server
+    !
+    !
+    ip prefix-list plR8 seq 9999 deny 0.0.0.0/0 le 32
+    !
+    ip prefix-list plR5 seq 10 permit 3.14.0.22/32
+    ip prefix-list plR5 seq 9999 deny 0.0.0.0/0 le 32
+    !
+    !
+    username aaa password 7 094D4F08
+    !
+    !
+    line vty 0 4
+    login local
+    !
+    !
+    enable secret 5 $1$vUGf$Ev6yLJRp.9eNbcJcaAw7T1
+    !
+    !
+    end
+    !
+    !
+    logout
+    !
+    end
+    wr
+
+
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R7
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 33
+  y: 264
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+- id: n8
+  boot_disk_size: null
+  configuration: |+
+    En
+    Conf t
+    !
+    !
+    hostname R8
+    !
+    ip routing
+    !
+    no ip domain lookup
+    !
+    interface Loopback0
+     ip address 3.14.0.22 255.255.255.255
+    !
+    interface g0/7
+     ip address 3.14.15.22 255.255.255.0
+     no shut
+    !
+    !
+    interface g0/2
+     ip address 3.14.159.22 255.255.255.0
+     no shut
+    !
+    !
+    router bgp 22
+     no synchronization
+     bgp log-neighbor-changes
+     network 3.14.0.22 mask 255.255.255.255
+    !
+    !
+     neighbor 3.14.15.21 remote-as 21
+     neighbor 3.14.159.23 remote-as 23
+     no auto-summary
+    !
+    !
+    ip http server
+    no ip http secure-server
+    !
+    !
+    service password
+    !
+    !
+    username aaa password 7 094D4F08
+    !
+    !
+    line vty 0 4
+    login local
+    !
+    !
+    enable secret 5 $1$vUGf$Ev6yLJRp.9eNbcJcaAw7T1
+    !
+    line vty 0 4
+    login local
+    !
+    !
+    end
+    !
+    !
+    logout
+    !
+    end
+    wr
+
+
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R8
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 387
+  y: 42
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+- id: n15
+  boot_disk_size: null
+  configuration: |-
+    !
+    ! Last configuration change at 05:49:04 UTC Wed Aug 10 2022
+    !
+    version 15.6
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R3
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    ethernet lmi ce
+    !
+    !
+    !
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback0
+     no shutdown
+     ip address 19.69.0.3 255.255.255.255
+    !
+    interface GigabitEthernet0/0
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/1
+     no shutdown
+     ip address 19.69.13.3 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/2
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/3
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/4
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/5
+     no shutdown
+     ip address 19.69.35.3 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/6
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/7
+     no shutdown
+     ip address 3.14.213.3 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/8
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/9
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/10
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    router ospf 1
+     network 19.69.0.0 0.0.255.255 area 0
+    !
+    router bgp 6531
+     bgp log-neighbor-changes
+     network 19.69.0.1 mask 255.255.255.255
+     network 19.69.0.3 mask 255.255.255.255
+     network 19.69.0.5 mask 255.255.255.255
+     network 19.69.0.6 mask 255.255.255.255
+     neighbor 3.14.213.21 remote-as 21
+     neighbor 3.14.213.21 filter-list 1 out
+     neighbor 19.69.13.1 remote-as 6531
+     neighbor 19.69.35.5 remote-as 6531
+    !
+    ip forward-protocol nd
+    !
+    ip as-path access-list 1 permit ^6531$
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    banner exec ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner incoming ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner login ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    !
+    line con 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+     login
+     transport input none
+    !
+    no scheduler allocate
+    !
+    end
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R3
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 390
+  y: 267
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical
+- id: n16
+  boot_disk_size: null
+  configuration: |+
+    En
+    Conf t
+    !
+    !
+    hostname R2
+    !
+    no ip domain lookup
+    !
+    interface Loopback0
+     ip address 3.14.0.23 255.255.255.255
+    !
+    !
+    interface g0/1
+     ip address 3.14.231.23 255.255.255.0
+     no shut
+    !
+    !
+    interface g0/8
+     ip address 3.14.159.23 255.255.255.0
+     no shut
+    !
+    router bgp 23
+     no synchronization
+     bgp log-neighbor-changes
+     network 3.14.0.23 mask 255.255.255.255
+    !
+    !
+     neighbor 3.14.159.22 remote-as 22
+     neighbor 3.14.231.1 remote-as 6531
+     no auto-summary
+    !
+    !
+    service password
+    !
+    !
+    username aaa password 7 094D4F08
+    !
+    !
+    line vty 0 4
+    login local
+    !
+    enable secret 5 $1$vUGf$Ev6yLJRp.9eNbcJcaAw7T1
+    !
+    !
+    line vty 0 4
+    !
+    login local
+    !
+    !
+    end
+    !
+    logout
+    wr
+
+
+
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R2
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 651
+  y: 42
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical
+- id: n17
+  boot_disk_size: null
+  configuration: |-
+    !
+    ! Last configuration change at 05:48:54 UTC Wed Aug 10 2022
+    !
+    version 15.6
+    service timestamps debug datetime msec
+    service timestamps log datetime msec
+    no service password-encryption
+    !
+    hostname R1
+    !
+    boot-start-marker
+    boot-end-marker
+    !
+    !
+    !
+    no aaa new-model
+    ethernet lmi ce
+    !
+    !
+    !
+    mmi polling-interval 60
+    no mmi auto-configure
+    no mmi pvc
+    mmi snmp-timeout 180
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    no ip domain lookup
+    ip cef
+    no ipv6 cef
+    !
+    multilink bundle-name authenticated
+    !
+    !
+    !
+    !
+    !
+    redundancy
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    !
+    interface Loopback0
+     no shutdown
+     ip address 19.69.0.1 255.255.255.255
+    !
+    interface GigabitEthernet0/0
+     no shutdown
+     ip address 19.69.17.1 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/1
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/2
+     no shutdown
+     ip address 3.14.231.1 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/3
+     no shutdown
+     ip address 19.69.13.1 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/4
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/5
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/6
+     no shutdown
+     ip address 19.69.16.1 255.255.255.0
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/7
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/8
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/9
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    interface GigabitEthernet0/10
+     no shutdown
+     no ip address
+     shutdown
+     duplex auto
+     speed auto
+     media-type rj45
+    !
+    router ospf 1
+     network 19.69.0.0 0.0.255.255 area 0
+    !
+    router bgp 6531
+     bgp log-neighbor-changes
+     network 19.69.0.1 mask 255.255.255.255
+     network 19.69.0.3 mask 255.255.255.255
+     network 19.69.0.5 mask 255.255.255.255
+     network 19.69.0.6 mask 255.255.255.255
+     aggregate-address 19.69.0.0 255.255.0.0
+     neighbor 3.14.231.23 remote-as 23
+     neighbor 3.14.231.23 filter-list 1 out
+     neighbor 19.69.13.3 remote-as 6531
+     neighbor 19.69.16.6 remote-as 6531
+     neighbor 19.69.17.7 remote-as 7
+    !
+    ip forward-protocol nd
+    !
+    ip as-path access-list 1 permit ^6531$
+    !
+    no ip http server
+    no ip http secure-server
+    !
+    !
+    !
+    !
+    control-plane
+    !
+    alias exec cc conf t
+    banner exec ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner incoming ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    banner login ^C
+    **************************************************************************
+    * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+    * education. IOSv is provided as-is and is not supported by Cisco's      *
+    * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+    * of the IOSv Software or Documentation to any third party for any       *
+    * purposes is expressly prohibited except as otherwise authorized by     *
+    * Cisco in writing.                                                      *
+    **************************************************************************^C
+    !
+    line con 0
+     logging synchronous
+    line aux 0
+    line vty 0 4
+     login
+     transport input none
+    !
+    no scheduler allocate
+    !
+    end
+  cpu_limit: null
+  cpus: 1
+  data_volume: null
+  hide_links: false
+  label: R1
+  node_definition: iosv
+  image_definition: null
+  ram: 1024
+  tags: []
+  x: 648
+  y: 270
+  interfaces:
+  - id: i0
+    label: GigabitEthernet0/0
+    slot: 0
+    type: physical
+  - id: i1
+    label: GigabitEthernet0/1
+    slot: 1
+    type: physical
+  - id: i2
+    label: GigabitEthernet0/2
+    slot: 2
+    type: physical
+  - id: i3
+    label: GigabitEthernet0/3
+    slot: 3
+    type: physical
+  - id: i4
+    label: GigabitEthernet0/4
+    slot: 4
+    type: physical
+  - id: i5
+    label: GigabitEthernet0/5
+    slot: 5
+    type: physical
+  - id: i6
+    label: GigabitEthernet0/6
+    slot: 6
+    type: physical
+  - id: i7
+    label: GigabitEthernet0/7
+    slot: 7
+    type: physical
+  - id: i8
+    label: GigabitEthernet0/8
+    slot: 8
+    type: physical
+  - id: i9
+    label: GigabitEthernet0/9
+    slot: 9
+    type: physical
+  - id: i10
+    label: GigabitEthernet0/10
+    slot: 10
+    type: physical
